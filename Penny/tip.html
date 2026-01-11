@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penny - Tip Someone</title>
+    <link rel="icon" type="image/png" href="assets/penny icon logo.png">
+
+    <!-- LEAFLET MAP LIBRARY -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <link rel="stylesheet" href="tip.css">
+    
+</head>
+<body>
+    <!-- Floating penny decorations -->
+    <div class="penny-icon penny-1"><img src="assets\floating coin.png" alt="floating coin" width="65%" height="65%"></div>
+    <div class="penny-icon penny-2"><img src="assets\floating coin.png" alt="floating coin" width="65%" height="65%"></div>
+    <div class="penny-icon penny-3"><img src="assets\floating coin.png" alt="floating coin" width="65%" height="65%"></div>
+
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo"><img src="assets\penny icon logo.png" alt="Description" width="25%" height="25%">Penny</div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="Login.html">Login</a>
+                    <a href="signup.html">Sign Up</a>
+                    <a href="tip.html" class="btn-primary">Tip Now</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 class="main-title">
+            Want to <span class="highlight">Tip</span><br>
+            Someone?
+        </h1>
+
+        <div class="action-buttons">
+            <button class="action-btn">Search UserID</button>
+            <button class="action-btn">Scan QR code</button>
+        </div>
+
+        <!-- dollar image on side -->
+                <div class="login-visual">
+                    <div class="dollar-icon"><img src="assets\dollar hero icon.png" alt="Description" width="30%" height="30%"></div>
+                </div>
+
+            <!-- Search UserID Popup -->
+<!-- Search UserID Popup -->
+<div id="search-container" class="search-container hidden">
+    <div class="search-box">
+
+        <h2>Tip Someone</h2>
+
+        <!-- Step 1: User ID -->
+        <label>User ID</label>
+        <input type="text" id="search-user-id" placeholder="Enter User ID">
+
+        <!-- Step 2: Tip Amount -->
+        <label id="amount-label" style="display:none;">Tip Amount (R)</label>
+        <input type="number" id="tip-amount" placeholder="Enter amount"
+               style="display:none;">
+
+        <!-- Step 3: Payment Method -->
+        <label id="pay-label" style="display:none;">Payment Method</label>
+        <select id="payment-method" style="display:none;">
+            <option value="">Select Method</option>
+            <option value="card">Credit / Debit Card</option>
+            <option value="eft">Instant EFT</option>
+            <option value="payfast">PayFast</option>
+            <option value="yoco">Yoco</option>
+            <option value="paypal">PayPal</option>
+        </select>
+
+        <div class="search-actions">
+            <button id="search-confirm" class="btn-confirm">Find User</button>
+            <button id="search-close" class="btn-cancel">Cancel</button>
+        </div>
+
+    </div>
+</div>
+
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#features">Key Features</a></li>
+                        <li><a href="#partners">Partners</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#terms">Terms of Service</a></li>
+                        <li><a href="#popia">POPIA Policy</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#bee">B-BBEE Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Cape Town, SOUTH AFRICA</li>
+                        <li>346 DE WAAL ROAD</li>
+                        <li><a href="mailto:hello@penny.co.za">hello@penny.com</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Get Tipping Updates</p>
+                    <div class="newsletter-input">
+                        <input type="email" placeholder="Email">
+                        <button class="btn-newsletter">Subscribe</button>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- MAP SECTION -->
+            <div class="map-section">
+                <div id="map" style="width: 100%; height: 200px; margin: 20px 0; border-radius: 12px; overflow: hidden;"></div>
+            </div>
+            
+            <div class="footer-bottom">
+                © 2024 Penny (Pty) Ltd | FSP #12345
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="tip.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Set map center (Cape Town Example)
+        const map = L.map("map").setView([-33.9249, 18.4241], 13);
+
+        // Add tile layer (background)
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Add marker
+        L.marker([-33.9249, 18.4241])
+            .addTo(map)
+            .bindPopup("Our Penny Office<br>Cape Town")
+            .openPopup();
+    });
+</script>
+
+</body>
+</html>
